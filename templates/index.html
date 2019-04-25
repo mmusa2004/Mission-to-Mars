@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mission to Mars</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <style>
+  #mars_table thead {
+    font-weight: bold;
+    background-color: darkslategray;
+    color: white;
+  }
+  #mars_table td:first-child {
+    font-weight: bold;
+  }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+  <div class="jumbotron" style="height:160px; padding-top: 1px; margin: 0 0 0 0;" >
+    <h1 style="text-align: center">Mission to Mars</h1>
+      <p style="text-align: center"><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
+  </div>
+</div>
+{% for mars_dict in mars %}
+<div class="container">
+  <div class="card-body">
+    <h3 class="card-title" style="font-weight: bold;">Latest Mars News</h3>
+      <h4 class="card-subtitle" style="font-weight: bold;">{{ mars_dict.news_title }}</h4>
+      <p class="card-text">{{ mars_dict.news_p }}</p>
+  
+  <br/>
+  </div>
+  
+    <div class="col-lg-8 col-md-8 col-xs-8">
+    <h3 class="card-title" style="font-weight: bold;">Featured Mars Image</h3>
+    <img width=100%; src="{{ mars_dict.featured_image_url }}">
+    <br/>
+    </div>
+    <br/>
+    <br/>
+    <br/>
+    <div class="col-lg-3 col-md-3 col-xs-3 sidebar" style="outline: 1px solid lightgrey; margin: 0 0 0 13px;">
+      <h5 class="card-subtitle" style="font-weight: bold;">Current Weather on Mars</h5>
+      <p class="card-text" style="font-size: 9pt; font-weight: lighter;">{{ mars_dict.mars_weather }}</p>
+    </div>
+    <br/>
+    <br/>
+   
+    <div class="col-lg-4 col-md-4 col-xs-4 sidebar">
+    <h5 class="card-subtitle" style="font-weight: bold;">Mars Facts</h5>
+    <div style="margin-top: 0px; font-size: 8pt">
+    {{ mars_dict.mars_facts|safe }}
+    </div>
+    </div>
+  </div>
+<br/>
+
+<div class="container">
+<h3 class="card-title" style="width: 100%; font-weight: bold; text-align: center;">Mars Hemispheres</h3>
+<div class="row">
+    <div class="col-lg-6 col-md-6 col-xs-6">
+      <div style="outline: 1px solid lightgrey; padding-bottom: 3px;">
+      <img class="image-thumbnail" style='margin: 0px 10px 0px 0px' width=100%; src="{{ mars_dict.hemisphere_image_urls.0.img_url }}">
+      <h4 style="text-align: center; font-weight: bold;">{{ mars_dict.hemisphere_image_urls.0.title }}</h4>
+      </div>
+      <br/>
+      <div style="outline: 1px solid lightgrey; padding-bottom: 3px;">
+      <img class="image-thumbnail" style='margin: 0px 10px 0px 0px' width=100%; src="{{ mars_dict.hemisphere_image_urls.1.img_url }}">
+      <h4 style="text-align: center; font-weight: bold;">{{ mars_dict.hemisphere_image_urls.1.title }}</h4>
+      </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-xs-6">
+      <div style="outline: 1px solid lightgrey; padding-bottom: 3px;">
+      <img class="image-thumbnail" style='margin: 0px 10px 0px 0px' width=100%; src="{{ mars_dict.hemisphere_image_urls.2.img_url }}">
+      <h4 style="text-align: center; font-weight: bold;">{{ mars_dict.hemisphere_image_urls.2.title }}</h4>
+      </div>
+      <br/>
+      <div style="outline: 1px solid lightgrey; padding-bottom: 3px;">
+      <img class="image-thumbnail" style='margin: 0px 10px 0px 0px' width=100%; src="{{ mars_dict.hemisphere_image_urls.3.img_url }}">
+      <h4 style="text-align: center; font-weight: bold;">{{ mars_dict.hemisphere_image_urls.3.title }}</h4>
+      </div>
+    </div>
+</div>
+{% endfor %}
+</div>
+</body>
+</html>
